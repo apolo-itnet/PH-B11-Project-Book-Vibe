@@ -18,13 +18,9 @@ const Book = ({ singleBook }) => {
           </figure>
           <div className="card-body pb-0">
             <div className="flex justify-center gap-4 pb-2">
-              {tags.map((tag) => (
-                <div className="bg-gray-100 p-1 px-2 rounded-md border border-gray-200">
-                  {tag}
-                </div>
-              ))}
+              {tags.map((tag, index) => ( <div key={tag + index} className="bg-gray-100 text-green-600 text-md font-semibold p-1 px-2 rounded-md border border-gray-200"> {tag} </div> ))}
             </div>
-            <h2 className="card-title">
+            <h2 className="card-title flex justify-between">
               {" "}
               {bookName}{" "}
               <span className="badge badge-secondary">{yearOfPublishing}</span>{" "}

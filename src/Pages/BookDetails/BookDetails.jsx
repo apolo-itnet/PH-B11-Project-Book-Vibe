@@ -1,18 +1,30 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
 import { addToStoreDB } from "../../Utility/addToDB";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 const BookDetails = () => {
   const { id } = useParams();
   const bookId = parseInt(id);
   const data = useLoaderData();
   const singleBookData = data.find((book) => book.bookId === bookId);
+  console.log("data from useLoaderData", data);
+  
 
   const {
-    image, bookName, author, category, review, tags, totalPages, publisher,
+    image, bookName, author, category, review, tags = [], totalPages, publisher,
     yearOfPublishing, rating } = singleBookData || {};
 
   const handleMarkAsRead = id => {
+
+    MySwal.fire({
+      title: "Success to Add!",
+      icon: "success",
+      draggable: true
+    });
 
     addToStoreDB(id)
   }
@@ -33,10 +45,10 @@ const BookDetails = () => {
             <span className="font-bold">Review:</span> {review}
           </p>
           <div className="flex justify-start items-center gap-4 py-4 border-b border-gray-200">
-            {" "}
+            {/* {" "} */}
             <span className="font-bold">Tag</span>
-            {tags.map((tag) => (
-              <div className="text-green-600 font-bold">#{tag}</div>
+            {tags.map((tag, index) => (
+              <div key={tag + index} className="text-green-600 font-bold">#{tag}</div>
             ))}
           </div>
           <div className="flex gap-10 py-6">
@@ -57,7 +69,7 @@ const BookDetails = () => {
           <div className="card-actions justify-start">
             <button onClick={() => handleMarkAsRead(id)} className="btn ">Mark as Read</button>
             <button className="btn btn-primary bg-cyan-500 border-none shadow-none text-white">
-              Add to Whishlist
+              Add to Wishlist
             </button>
           </div>
         </div>

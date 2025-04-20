@@ -5,9 +5,11 @@ const Navbar = () => {
 
   const links = <>
         
-        <Link><li className="m-2">Home</li></Link>
-        <Link to='/listedBooks'> <li className="m-2">Listed Books</li> </Link>
-        <Link to='/pagesToRead'> <li className="m-2">Pages to Read</li> </Link>
+        <div className="flex gap-2 text-base font-semibold">
+          <Link><li className="m-2 btn bg-white border-none shadow-md">Home</li></Link>
+          <Link to='/listedBooks'> <li className="m-2 btn bg-white border-none shadow-md">Listed Books</li> </Link>
+          <Link to='/pagesToRead'> <li className="m-2 btn bg-white border-none shadow-md">Pages to Read</li> </Link>
+        </div>
   </>
 
   return (
@@ -36,18 +38,21 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
+             <div className="border">
               {links}
+             </div>
             </ul>
           </div>
-          <a className="btn bg-white border-none text-xl">Book Vibe</a>
+          <a className="btn bg-white border-none text-xl font-bold shadow-none">Book Vibe</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {links}
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end gap-4">
+          <a className="btn rounded-md px-6 py-5 bg-green-600 text-white border-none shadow-none">Sign in</a>
+          <a className="btn rounded-md px-6 py-5 bg-cyan-600 text-white border-none shadow-none">Sign up</a>
         </div>
       </div>
     </div>
